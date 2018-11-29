@@ -1,0 +1,76 @@
+<!-- <input type="text" (keyup)="searchData($event)" [(ngModel)]="query"> -->
+
+<div nz-row>
+<nz-input-group class="search-textbox" nz-col nzXs="24" nzSm="24" nzMd="3" nzLg="3" nzXl="3" nzSearch [nzSuffix]="suffixIconButton">
+    <input (keyup)="searchData($event)" [(ngModel)]="query" type="text" nz-input placeholder="Search anything">
+  </nz-input-group>
+  <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch><i class="anticon anticon-search"></i></button>
+    </ng-template>
+    </div>
+<div nz-row>
+    <div nz-col nzXs="24" nzSm="24" nzMd="3" nzLg="3" nzXl="3">
+      </div>
+  <div nz-col nzXs="24" nzSm="24" nzMd="18" nzLg="18" nzXl="18">
+<nz-list
+    [nzDataSource]="searchData()"
+    [nzItemLayout]="'vertical'"
+    [nzRenderItem]="item"
+    [nzPagination]="pagination">
+      <ng-template #item let-item>
+          <nz-list-item [nzContent]="item.content" [nzActions]="[starAction,likeAction,msgAction]" [nzExtra]="extra">
+              <ng-template #starAction><i class="anticon anticon-star-o" style="margin-right: 8px;"></i> 156</ng-template>
+              <ng-template #likeAction><i class="anticon anticon-like-o" style="margin-right: 8px;"></i> 156</ng-template>
+              <ng-template #msgAction><i class="anticon anticon-message" style="margin-right: 8px;"></i> 2</ng-template>
+              <nz-list-item-meta
+                  [nzAvatar]="item.image_url"
+                  [nzTitle]="item.post_title"
+                  [nzDescription]="item.cuisine">
+                  <ng-template #nzTitle><a href="{{item.href}}">{{item.title}}</a></ng-template>
+              </nz-list-item-meta>
+              <ng-template #extra>
+                  <img width="272" alt="logo" src="{{item.image_url}}">
+              </ng-template>
+              <div [innerHtml]="item.special_info">
+
+                </div>
+                <div *ngIf="item.seating == 'Available';else other_content">
+                    <nz-badge nzStatus="success">
+                        <a class="head-example"></a>
+                      </nz-badge> Available
+                </div>
+                
+                <div nz-row>
+                    <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
+                        Open On: {{item.open_on || '-'}}
+                      </div>
+                      <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
+                        Closed On: {{item.closed_on || '-'}}
+                        </div>
+                </div>
+                <nz-collapse>
+                    <nz-collapse-panel [nzHeader]="Address">
+                      <p style="margin:0;">{{item.address}}</p>
+                      <p>Contact: {{item.phone_number}}</p>
+                      <p>Location: <a target=_blank href="{{item.map}}">Open</a></p>
+                    </nz-collapse-panel>
+                  </nz-collapse>
+                  <div style="margin: 2%">
+                    <B>Author: {{item.author}}</B>
+                  </div>
+                <ng-template #other_content>
+                  <nz-badge nzStatus="error">
+                    <a class="head-example"></a> 
+                  </nz-badge> {{item.seating}}
+                </ng-template>
+                
+          </nz-list-item>
+      </ng-template>
+      <ng-template #pagination>
+          <nz-pagination [nzPageIndex]="1" [nzTotal]="10"></nz-pagination>
+      </ng-template>
+  </nz-list>
+  </div>
+  <div nz-col nzXs="24" nzSm="24" nzMd="3" nzLg="3" nzXl="3">
+    </div>
+  </div>

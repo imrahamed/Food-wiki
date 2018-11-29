@@ -1,0 +1,38 @@
+#one{
+
+  
+    width: 300px;
+    height: 35px;
+    text-align: center;
+
+}
+button{
+
+    color: blanchedalmond;
+    background-color: #1465e8;
+    width: 100px;
+    height: 35px;
+}
+
+    
+.zee{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.ant-collapse-header {
+    /* height: 37px;; */
+}
+.search {
+    WIDTH: 48px;
+    height: 36px;
+    border-radius: 4px;
+}
+
+.search-textbox {
+    width: 33%;
+    margin-top: 1%;
+    margin-left: 54.5%;
+}
